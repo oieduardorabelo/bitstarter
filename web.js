@@ -4,6 +4,10 @@ var buffer = new Buffer(fs.readFileSync("index.html"));
 
 var app = express.createServer(express.logger());
 
+app.configure(function() {
+  app.use(express.static(__dirname+"/assets"));
+});
+
 app.get('/', function(request, response) {
   response.send(buffer.toString("utf-8"));
 });
